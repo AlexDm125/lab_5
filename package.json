@@ -1,0 +1,17 @@
+{
+  "name": "base-server",
+  "version": "1.0.0",
+  "description": "Конвертація AVI та MOV відео у MP4 через сервер на Node.js",
+  "main": "api/server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node api/server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0",
+    "ffmpeg-static": "^4.4.1",
+    "fluent-ffmpeg": "^2.1.3"
+  }
+}

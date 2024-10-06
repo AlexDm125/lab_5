@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Підтримка мультимедійних форматів</title>
+    <link rel="stylesheet" href="https://unpkg.com/panellum/build/panellum.css"> 
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+h2 {
+    margin-top: 40px;
+}
+
+video, audio {
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+p {
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+#flash-content {
+    margin-bottom: 50px;
+}
+    </style>
+</head>
+<body>
+    <h1>Підтримка мультимедійних форматів</h1>
+
+    <!-- AVI -->
+    <h2>Формат AVI (Конвертований)</h2>
+    <video width="640" height="360" controls>
+        <source src="/convert-avi" type="video/mp4">
+        Ваш браузер не підтримує відтворення цього відео.
+    </video>
+    <p><strong>Переваги:</strong> Висока якість відео після конвертації.</p>
+    <p><strong>Недоліки:</strong> Потрібна конвертація на сервері.</p>
+
+    <!-- MP3 -->
+    <h2>Формат MP3</h2>
+    <audio controls>
+        <source src="/media/audio.mp3" type="audio/mpeg">
+        Ваш браузер не підтримує формат MP3.
+    </audio>
+    <p><strong>Переваги:</strong> Широко підтримується, компактний розмір файлу.</p>
+    <p><strong>Недоліки:</strong> Лише аудіо.</p>
+
+    <!-- Flash -->
+    <h2>Формат Flash (Емуляція)</h2>
+    <div id="flash-content" style="width: 640px; height: 360px;"></div>
+    <p><strong>Переваги:</strong> Раніше широко використовувався для анімації та інтерактивних елементів.</p>
+    <p><strong>Недоліки:</strong> Браузери більше не підтримують Flash, необхідна емуляція.</p>
+
+    <script src="https://unpkg.com/@ruffle-rs/ruffle"></script>
+    <script>
+        window.addEventListener("load", () => {
+            const ruffle = window.RufflePlayer.newest();
+            const player = ruffle.createPlayer();
+
+            document.getElementById("flash-content").appendChild(player);
+            
+            player.load("../media/flashfile.swf")
+                .then(() => {
+                    console.log("Flash file loaded successfully");
+                })
+                .catch(e => {
+                    console.error("Error loading Flash file:", e);
+                });
+        });
+    </script>
+</body>
+</html>
